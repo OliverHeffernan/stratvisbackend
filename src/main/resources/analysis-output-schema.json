@@ -1,0 +1,271 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "summary",
+    "vegetation_health",
+    "crop_health",
+    "deforestation",
+    "water_quality",
+    "coastal_erosion",
+    "disaster_indicators",
+    "maritime_features",
+    "points_of_interest",
+    "land_use"
+  ],
+  "properties": {
+    "summary": {
+      "type": "string"
+    },
+    "vegetation_health": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "canopy_density_percent",
+        "greenness_index",
+        "explanation"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "healthy",
+            "stressed",
+            "poor",
+            "unknown"
+          ]
+        },
+        "canopy_density_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "greenness_index": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "explanation": {
+          "type": "string"
+        }
+      }
+    },
+    "crop_health": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "stressed_area_percent",
+        "main_issue",
+        "explanation"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "excellent",
+            "good",
+            "fair",
+            "poor",
+            "not_applicable"
+          ]
+        },
+        "stressed_area_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "main_issue": {
+          "type": "string",
+          "enum": [
+            "drought",
+            "pest",
+            "nutrient_deficiency",
+            "disease",
+            "none",
+            "unknown"
+          ]
+        },
+        "explanation": {
+          "type": "string"
+        }
+      }
+    },
+    "deforestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tree_cover_percent",
+        "recent_loss_percent",
+        "explanation"
+      ],
+      "properties": {
+        "tree_cover_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "recent_loss_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "explanation": {
+          "type": "string"
+        }
+      }
+    },
+    "water_quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "visible_pollution",
+        "explanation"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "clear",
+            "turbid",
+            "polluted",
+            "algal_bloom",
+            "unknown"
+          ]
+        },
+        "visible_pollution": {
+          "type": "boolean"
+        },
+        "explanation": {
+          "type": "string"
+        }
+      }
+    },
+    "coastal_erosion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "erosion_detected",
+        "severity",
+        "explanation"
+      ],
+      "properties": {
+        "erosion_detected": {
+          "type": "boolean"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "none"
+          ]
+        },
+        "explanation": {
+          "type": "string"
+        }
+      }
+    },
+    "disaster_indicators": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "flooding",
+        "fire_scar",
+        "landslide",
+        "other",
+        "explanation"
+      ],
+      "properties": {
+        "flooding": {
+          "type": "boolean"
+        },
+        "fire_scar": {
+          "type": "boolean"
+        },
+        "landslide": {
+          "type": "boolean"
+        },
+        "other": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "explanation": {
+          "type": "string"
+        }
+      }
+    },
+    "maritime_features": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ships_detected",
+        "oil_spill",
+        "explanation"
+      ],
+      "properties": {
+        "ships_detected": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "oil_spill": {
+          "type": "boolean"
+        },
+        "explanation": {
+          "type": "string"
+        }
+      }
+    },
+    "points_of_interest": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "x",
+          "y",
+          "message",
+          "long_message",
+          "type"
+        ],
+        "properties": {
+          "x": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "y": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "message": {
+            "type": "string"
+          },
+          "long_message": {
+            "type": "string"
+          },
+          "type": {
+            "type": "integer",
+            "enum": [
+              0,
+              1,
+              2
+            ]
+          }
+        }
+      }
+    },
+    "land_use": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

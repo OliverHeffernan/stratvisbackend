@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import olihef.stratvis.prompt.AnalysisPrompts;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +28,8 @@ public class ImageAnalysisService {
 	private final String apiUrl;
 	private final String model;
 	private final String apiKey;
+	private final String analysisSchemaText;
+	private final JsonNode analysisJsonSchema;
 
 	public ImageAnalysisService(
 		RestTemplate restTemplate,
@@ -39,6 +43,13 @@ public class ImageAnalysisService {
 		this.apiUrl = apiUrl;
 		this.model = model;
 		this.apiKey = apiKey;
+		try {
+			ClassPathResource schemaResource = new ClassPathResource("analysis-output-schema.json");
+			this.analysisSchemaText = new String(schemaResource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+			this.analysisJsonSchema = objectMapper.readTree(analysisSchemaText);
+		} catch (IOException e) {
+			throw new IllegalStateException("Failed to initialize analysis JSON schema.", e);
+		}
 	}
 
 	public JsonNode analyze(MultipartFile image) throws IOException {
@@ -58,13 +69,20 @@ public class ImageAnalysisService {
 
 		Map<String, Object> requestBody = Map.of(
 			"model", model,
-			"response_format", Map.of("type", "json_object"),
+			"response_format", Map.of(
+				"type", "json_schema",
+				"json_schema", Map.of(
+					"name", "stratvis_environmental_analysis",
+					"strict", true,
+					"schema", analysisJsonSchema
+				)
+			),
 			"messages", List.of(
 				Map.of("role", "system", "content", AnalysisPrompts.SYSTEM_PROMPT),
 				Map.of(
 					"role", "user",
 					"content", List.of(
-						Map.of("type", "text", "text", AnalysisPrompts.USER_PROMPT),
+						Map.of("type", "text", "text", AnalysisPrompts.buildUserPrompt(analysisSchemaText)),
 						Map.of("type", "image_url", "image_url", Map.of("url", imageDataUrl))
 					)
 				)
