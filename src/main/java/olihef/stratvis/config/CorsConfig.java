@@ -12,6 +12,6 @@ public class CorsConfig {
 		*/
 		headers.setAccessControlAllowOrigin("http://localhost:5173");
 		headers.setAccessControlAllowCredentials(true);
-		headers.setAccessControlAllowMethods(List.of(HttpMethod.POST, HttpMethod.OPTIONS));
+		headers.setAccessControlAllowMethods(List.of(HttpMethod.POST, HttpMethod.OPTIONS, HttpMethod.GET));
 	}
 }
