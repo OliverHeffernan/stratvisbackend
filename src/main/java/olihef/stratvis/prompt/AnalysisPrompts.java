@@ -1,4 +1,4 @@
-package nz.kea.stratvisbackend.prompt;
+package olihef.stratvis.prompt;
 
 public final class AnalysisPrompts {
 
@@ -59,8 +59,22 @@ public final class AnalysisPrompts {
                 "oil_spill": boolean,
                 "explanation": "short description"
               },
+              "points_of_interest": [
+                {
+                  "x": number (0-100, horizontal position as % from left of image),
+                  "y": number (0-100, vertical position as % from top of image),
+                  "message": "short description of the point, impact, and action to mitigate/maintain",
+                  "long_message": "longer description of the point. Expands on the \"message\" field. Should include actionable suggestions for what should be done about it.",
+                  "type": 0 | 1 | 2
+                }
+              ],
               "land_use": ["agriculture", "native_forest", "urban", "wetland", ...]
             }
+
+            For points_of_interest.type:
+            - 0 = danger (currently impacting the environment)
+            - 1 = threat (could impact the environment if no action is taken)
+            - 2 = positive impact (beneficial environmental feature/process to maintain or scale)
 
             Include a confidence score (0-100) for each top-level category if you want, but keep the structure exactly as shown.
             """;

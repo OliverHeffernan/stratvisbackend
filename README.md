@@ -28,6 +28,21 @@ mvn spring-boot:run
 
 Server starts on `http://localhost:8080`.
 
+## Run With Docker
+
+Build and run with Docker directly:
+
+```bash
+docker build -t olihef/stratvis-api:local .
+docker run --rm -p 8080:8080 -e OPENAI_API_KEY=your_real_key_here olihef/stratvis-api:local
+```
+
+Or use Docker Compose (reads `.env` automatically):
+
+```bash
+docker compose up --build
+```
+
 ## API
 
 ### `POST /api/v1/analyze`
@@ -43,3 +58,8 @@ curl -X POST "http://localhost:8080/api/v1/analyze" \
 ```
 
 Response: JSON object in the structure specified by your prompt.
+
+## Rate Limit
+
+`POST /api/v1/analyze` is limited to 1 request per user every 30 seconds (user identified by `X-Forwarded-For` first, otherwise remote IP).  
+If limited, the API returns `429 Too Many Requests` with a `Retry-After` header.

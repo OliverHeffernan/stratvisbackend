@@ -1,7 +1,7 @@
-package nz.kea.stratvisbackend.controller;
+package olihef.stratvis.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import nz.kea.stratvisbackend.service.ImageAnalysisService;
+import olihef.stratvis.service.ImageAnalysisService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

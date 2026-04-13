@@ -1,0 +1,47 @@
+{
+	"summary":"The region shows varied land use with healthy vegetation and urban areas along the coast.",
+	"vegetation_health":{
+		"status":"healthy",
+		"canopy_density_percent":75,
+		"greenness_index":85,
+		"explanation":"The dense green areas indicate robust vegetation, especially in forested regions."
+	},
+	"crop_health":{
+		"status":"good",
+		"stressed_area_percent":15,
+		"main_issue":"unknown",
+		"explanation":"Most agricultural areas appear healthy with minor stress patches."
+	},
+	"deforestation":{
+		"tree_cover_percent":60,
+		"recent_loss_percent":5,
+		"explanation":"Minimal recent deforestation detected, with stable forest areas."
+	},
+	"water_quality":{
+		"status":"clear",
+		"visible_pollution":false,
+		"explanation":"The coastal waters appear clear with no signs of pollution."
+		},
+	"coastal_erosion":{
+		"erosion_detected":true,
+		"severity":"medium",
+		"explanation":"Visible signs of erosion along the coastal line, potentially affecting nearby infrastructure."
+	},
+	"disaster_indicators":{
+		"flooding":false,
+		"fire_scar":false,
+		"landslide":false,
+		"other":null,
+		"explanation":"No significant disaster indicators are observed in the area."
+	},
+	"maritime_features":{
+		"ships_detected":2,
+		"oil_spill":false,
+		"explanation":"A few ships are present, with no signs of oil spills."
+	},
+	"points_of_interest":[
+		{"x":20,"y":50,"message":"Medium coastal erosion detected, consider reinforcement activities.","type":1},
+		{"x":60,"y":70,"message":"Healthy forest cover that needs continued protection.","type":2}
+	],
+	"land_use":["agriculture","urban","native_forest","wetland"]
+}

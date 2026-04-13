@@ -1,4 +1,4 @@
-package nz.kea.stratvisbackend.config;
+package olihef.stratvis.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

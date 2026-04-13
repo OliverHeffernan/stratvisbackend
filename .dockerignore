@@ -1,0 +1,11 @@
+.git
+.idea
+.vscode
+target
+.env
+.env.*
+*.iml
+.DS_Store
+README.md
+exampleImgs
+exampleOutputs

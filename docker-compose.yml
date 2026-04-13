@@ -1,0 +1,14 @@
+services:
+  stratvis-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: olihef/stratvis-api:local
+    container_name: stratvis-api
+    env_file:
+      - .env
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

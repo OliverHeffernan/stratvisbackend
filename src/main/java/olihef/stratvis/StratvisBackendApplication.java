@@ -1,4 +1,4 @@
-package nz.kea.stratvisbackend;
+package olihef.stratvis;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
