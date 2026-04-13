@@ -92,6 +92,9 @@ public class ImageAnalysisService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.setBearerAuth(apiKey);
+		// allow CORS
+		headers.setAccessControlAllowOrigin("http://localhost:5173");
+
 		HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
 
 		ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntity, String.class);
