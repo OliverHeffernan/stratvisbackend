@@ -1,7 +1,5 @@
 package olihef.stratvis.service;
 
-import olihef.stratvis.config.CorsConfig;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import olihef.stratvis.prompt.AnalysisPrompts;
@@ -94,7 +92,6 @@ public class ImageAnalysisService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.setBearerAuth(apiKey);
-		CorsConfig.addCorsToHeaders(headers);
 
 		HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
 
